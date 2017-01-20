@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Simple Inventory")]
-[assembly: AssemblyDescription("Simple Stock and Inventory Management Sytem")]
+[assembly: AssemblyDescription("Simple Stock and Inventory Management System")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sinuvera Technologies")]
+[assembly: AssemblyCompany("Moosh Digital")]
 [assembly: AssemblyProduct("Simple Inventory")]
-[assembly: AssemblyCopyright("Copyright ©  Sinuvera Technologies 2010")]
+[assembly: AssemblyCopyright("Copyright ©  Nathan Moore 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
