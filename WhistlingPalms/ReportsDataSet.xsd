@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportsDataSet" targetNamespace="http://tempuri.org/ReportsDataSet.xsd" xmlns:mstns="http://tempuri.org/ReportsDataSet.xsd" xmlns="http://tempuri.org/ReportsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="InventoryStoreConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="InventoryStoreConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WhistlingPalms.Properties.Settings.GlobalReference.Default.InventoryStoreConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CurrentInventoryTableAdapter" GeneratorDataComponentClassName="CurrentInventoryTableAdapter" Name="CurrentInventory" UserDataComponentName="CurrentInventoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryStoreConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblInventory.InventoryID, tblInventory.ProductID, tblProducts.ProductName, tblProducts.Manufacturer, tblProducts.ProductTag1, tblProducts.ProductTag2, 
+                         tblInventory.WareHouseID, tblWareHouse.WareHouseName, tblInventory.Cost, tblInventory.Quantity, tblInventory.Cost * tblInventory.Quantity AS TotalCost
+FROM            tblInventory INNER JOIN
+                         tblProducts ON tblInventory.ProductID = tblProducts.ProductID INNER JOIN
+                         tblWareHouse ON tblInventory.WareHouseID = tblWareHouse.WareHouseID
+ORDER BY tblProducts.ProductName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="InventoryID" DataSetColumn="InventoryID" />
+              <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
+              <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
+              <Mapping SourceColumn="Manufacturer" DataSetColumn="Manufacturer" />
+              <Mapping SourceColumn="ProductTag1" DataSetColumn="ProductTag1" />
+              <Mapping SourceColumn="ProductTag2" DataSetColumn="ProductTag2" />
+              <Mapping SourceColumn="WareHouseID" DataSetColumn="WareHouseID" />
+              <Mapping SourceColumn="WareHouseName" DataSetColumn="WareHouseName" />
+              <Mapping SourceColumn="Cost" DataSetColumn="Cost" />
+              <Mapping SourceColumn="Quantity" DataSetColumn="Quantity" />
+              <Mapping SourceColumn="TotalCost" DataSetColumn="TotalCost" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TransactionSummaryTableAdapter" GeneratorDataComponentClassName="TransactionSummaryTableAdapter" Name="TransactionSummary" UserDataComponentName="TransactionSummaryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryStoreConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblTransaction.TransactionID, tblTransaction.TransactionDetails, tblTransaction.TransactionDate, tblTransaction.TransactionTypeID, 
+                         tblTransactionType.TransactionType, tblTransactionType.ActionType, tblTransactionType.HasClientOrderInformation, tblTransaction.Remarks, 
+                         tblTransaction.OrderNo, tblTransaction.ClientID, tblClient.ClientName,
+                             (SELECT        SUM(TotalCost) AS Expr1
+                               FROM            tblTransactionDetails
+                               WHERE        (TransactionID = tblTransaction.TransactionID)) AS OrderTotal
+FROM            tblTransaction LEFT OUTER JOIN
+                         tblClient ON tblTransaction.ClientID = tblClient.ClientID INNER JOIN
+                         tblTransactionType ON tblTransaction.TransactionTypeID = tblTransactionType.TransactionTypeID
+ORDER BY tblClient.ClientName ASC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TransactionID" DataSetColumn="TransactionID" />
+              <Mapping SourceColumn="TransactionDetails" DataSetColumn="TransactionDetails" />
+              <Mapping SourceColumn="TransactionDate" DataSetColumn="TransactionDate" />
+              <Mapping SourceColumn="TransactionTypeID" DataSetColumn="TransactionTypeID" />
+              <Mapping SourceColumn="TransactionType" DataSetColumn="TransactionType" />
+              <Mapping SourceColumn="ActionType" DataSetColumn="ActionType" />
+              <Mapping SourceColumn="HasClientOrderInformation" DataSetColumn="HasClientOrderInformation" />
+              <Mapping SourceColumn="Remarks" DataSetColumn="Remarks" />
+              <Mapping SourceColumn="OrderNo" DataSetColumn="OrderNo" />
+              <Mapping SourceColumn="ClientID" DataSetColumn="ClientID" />
+              <Mapping SourceColumn="ClientName" DataSetColumn="ClientName" />
+              <Mapping SourceColumn="OrderTotal" DataSetColumn="OrderTotal" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ClientTransactionDetailsTableAdapter" GeneratorDataComponentClassName="ClientTransactionDetailsTableAdapter" Name="ClientTransactionDetails" UserDataComponentName="ClientTransactionDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryStoreConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblTransactionDetails.TransactionDetailID, tblTransactionDetails.TransactionID, tblTransaction.TransactionDetails, tblTransaction.TransactionDate, 
+                         tblTransactionType.TransactionTypeID, tblTransactionType.TransactionType, tblTransactionType.ActionType, tblTransactionType.HasClientOrderInformation, 
+                         tblTransaction.OrderNo, tblClient.ClientID, tblClient.ClientName, tblProducts.ProductID, tblProducts.ProductName, tblProducts.Manufacturer, 
+                         tblWareHouse.WareHouseID, tblWareHouse.WareHouseName, tblTransactionDetails.TransactQuantity, tblTransactionDetails.TransactCost, 
+                         tblTransactionDetails.TotalCost
+FROM            tblTransactionDetails INNER JOIN
+                         tblTransaction ON tblTransactionDetails.TransactionID = tblTransaction.TransactionID INNER JOIN
+                         tblProducts ON tblTransactionDetails.ProductID = tblProducts.ProductID INNER JOIN
+                         tblWareHouse ON tblTransactionDetails.FromWareHouseID = tblWareHouse.WareHouseID INNER JOIN
+                         tblTransactionType ON tblTransaction.TransactionTypeID = tblTransactionType.TransactionTypeID INNER JOIN
+                         tblClient ON tblTransaction.ClientID = tblClient.ClientID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TransactionDetailID" DataSetColumn="TransactionDetailID" />
+              <Mapping SourceColumn="TransactionID" DataSetColumn="TransactionID" />
+              <Mapping SourceColumn="TransactionDetails" DataSetColumn="TransactionDetails" />
+              <Mapping SourceColumn="TransactionDate" DataSetColumn="TransactionDate" />
+              <Mapping SourceColumn="TransactionTypeID" DataSetColumn="TransactionTypeID" />
+              <Mapping SourceColumn="TransactionType" DataSetColumn="TransactionType" />
+              <Mapping SourceColumn="ActionType" DataSetColumn="ActionType" />
+              <Mapping SourceColumn="HasClientOrderInformation" DataSetColumn="HasClientOrderInformation" />
+              <Mapping SourceColumn="OrderNo" DataSetColumn="OrderNo" />
+              <Mapping SourceColumn="ClientID" DataSetColumn="ClientID" />
+              <Mapping SourceColumn="ClientName" DataSetColumn="ClientName" />
+              <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
+              <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
+              <Mapping SourceColumn="Manufacturer" DataSetColumn="Manufacturer" />
+              <Mapping SourceColumn="WareHouseID" DataSetColumn="WareHouseID" />
+              <Mapping SourceColumn="WareHouseName" DataSetColumn="WareHouseName" />
+              <Mapping SourceColumn="TransactQuantity" DataSetColumn="TransactQuantity" />
+              <Mapping SourceColumn="TransactCost" DataSetColumn="TransactCost" />
+              <Mapping SourceColumn="TotalCost" DataSetColumn="TotalCost" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StockChangeInformationTableAdapter" GeneratorDataComponentClassName="StockChangeInformationTableAdapter" Name="StockChangeInformation" UserDataComponentName="StockChangeInformationTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryStoreConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tblTransactionStockInformation.TransactionStockInformationID, tblTransactionDetails.TransactionDetailID, tblTransaction.TransactionID, 
+                         tblTransaction.TransactionDate, tblTransactionDetails.ProductID, tblProducts.ProductName, tblProducts.Manufacturer, tblTransactionDetails.FromWareHouseID, 
+                         tblWareHouse.WareHouseName AS FromWareHouseName, tblTransactionDetails.ToWareHouseID, tblWareHouse1.WareHouseName AS ToWareHouseName, 
+                         tblTransactionStockInformation.Cost, tblTransactionStockInformation.OldQuantity, tblTransactionStockInformation.NewQuantity, 
+                         tblTransactionStockInformation.IsFromWareHouse
+FROM            tblTransactionStockInformation INNER JOIN
+                         tblTransactionDetails ON tblTransactionStockInformation.TransactionDetailID = tblTransactionDetails.TransactionDetailID INNER JOIN
+                         tblTransaction ON tblTransactionDetails.TransactionID = tblTransaction.TransactionID INNER JOIN
+                         tblProducts ON tblTransactionDetails.ProductID = tblProducts.ProductID INNER JOIN
+                         tblWareHouse ON tblTransactionDetails.FromWareHouseID = tblWareHouse.WareHouseID LEFT OUTER JOIN
+                         tblWareHouse AS tblWareHouse1 ON tblTransactionDetails.ToWareHouseID = tblWareHouse1.WareHouseID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TransactionStockInformationID" DataSetColumn="TransactionStockInformationID" />
+              <Mapping SourceColumn="TransactionDetailID" DataSetColumn="TransactionDetailID" />
+              <Mapping SourceColumn="TransactionID" DataSetColumn="TransactionID" />
+              <Mapping SourceColumn="TransactionDate" DataSetColumn="TransactionDate" />
+              <Mapping SourceColumn="ProductID" DataSetColumn="ProductID" />
+              <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
+              <Mapping SourceColumn="Manufacturer" DataSetColumn="Manufacturer" />
+              <Mapping SourceColumn="FromWareHouseID" DataSetColumn="FromWareHouseID" />
+              <Mapping SourceColumn="FromWareHouseName" DataSetColumn="FromWareHouseName" />
+              <Mapping SourceColumn="ToWareHouseID" DataSetColumn="ToWareHouseID" />
+              <Mapping SourceColumn="ToWareHouseName" DataSetColumn="ToWareHouseName" />
+              <Mapping SourceColumn="Cost" DataSetColumn="Cost" />
+              <Mapping SourceColumn="OldQuantity" DataSetColumn="OldQuantity" />
+              <Mapping SourceColumn="NewQuantity" DataSetColumn="NewQuantity" />
+              <Mapping SourceColumn="IsFromWareHouse" DataSetColumn="IsFromWareHouse" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportsDataSet" msprop:Generator_UserDSName="ReportsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CurrentInventory" msprop:Generator_TableClassName="CurrentInventoryDataTable" msprop:Generator_TableVarName="tableCurrentInventory" msprop:Generator_TablePropName="CurrentInventory" msprop:Generator_RowDeletingName="CurrentInventoryRowDeleting" msprop:Generator_UserTableName="CurrentInventory" msprop:Generator_RowChangingName="CurrentInventoryRowChanging" msprop:Generator_RowEvHandlerName="CurrentInventoryRowChangeEventHandler" msprop:Generator_RowDeletedName="CurrentInventoryRowDeleted" msprop:Generator_RowEvArgName="CurrentInventoryRowChangeEvent" msprop:Generator_RowChangedName="CurrentInventoryRowChanged" msprop:Generator_RowClassName="CurrentInventoryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InventoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnInventoryID" msprop:Generator_ColumnPropNameInRow="InventoryID" msprop:Generator_ColumnPropNameInTable="InventoryIDColumn" msprop:Generator_UserColumnName="InventoryID" type="xs:int" />
+              <xs:element name="ProductID" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Manufacturer" msprop:Generator_ColumnVarNameInTable="columnManufacturer" msprop:Generator_ColumnPropNameInRow="Manufacturer" msprop:Generator_ColumnPropNameInTable="ManufacturerColumn" msprop:Generator_UserColumnName="Manufacturer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductTag1" msprop:Generator_ColumnVarNameInTable="columnProductTag1" msprop:Generator_ColumnPropNameInRow="ProductTag1" msprop:Generator_ColumnPropNameInTable="ProductTag1Column" msprop:Generator_UserColumnName="ProductTag1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductTag2" msprop:Generator_ColumnVarNameInTable="columnProductTag2" msprop:Generator_ColumnPropNameInRow="ProductTag2" msprop:Generator_ColumnPropNameInTable="ProductTag2Column" msprop:Generator_UserColumnName="ProductTag2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WareHouseID" msprop:Generator_ColumnVarNameInTable="columnWareHouseID" msprop:Generator_ColumnPropNameInRow="WareHouseID" msprop:Generator_ColumnPropNameInTable="WareHouseIDColumn" msprop:Generator_UserColumnName="WareHouseID" type="xs:int" />
+              <xs:element name="WareHouseName" msprop:Generator_ColumnVarNameInTable="columnWareHouseName" msprop:Generator_ColumnPropNameInRow="WareHouseName" msprop:Generator_ColumnPropNameInTable="WareHouseNameColumn" msprop:Generator_UserColumnName="WareHouseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cost" msprop:Generator_ColumnVarNameInTable="columnCost" msprop:Generator_ColumnPropNameInRow="Cost" msprop:Generator_ColumnPropNameInTable="CostColumn" msprop:Generator_UserColumnName="Cost" type="xs:decimal" />
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:decimal" />
+              <xs:element name="TotalCost" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalCost" msprop:Generator_ColumnPropNameInRow="TotalCost" msprop:Generator_ColumnPropNameInTable="TotalCostColumn" msprop:Generator_UserColumnName="TotalCost" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TransactionSummary" msprop:Generator_TableClassName="TransactionSummaryDataTable" msprop:Generator_TableVarName="tableTransactionSummary" msprop:Generator_TablePropName="TransactionSummary" msprop:Generator_RowDeletingName="TransactionSummaryRowDeleting" msprop:Generator_UserTableName="TransactionSummary" msprop:Generator_RowChangingName="TransactionSummaryRowChanging" msprop:Generator_RowEvHandlerName="TransactionSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionSummaryRowDeleted" msprop:Generator_RowEvArgName="TransactionSummaryRowChangeEvent" msprop:Generator_RowChangedName="TransactionSummaryRowChanged" msprop:Generator_RowClassName="TransactionSummaryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TransactionDetails" msprop:Generator_ColumnVarNameInTable="columnTransactionDetails" msprop:Generator_ColumnPropNameInRow="TransactionDetails" msprop:Generator_ColumnPropNameInTable="TransactionDetailsColumn" msprop:Generator_UserColumnName="TransactionDetails">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="TransactionTypeID" msprop:Generator_ColumnVarNameInTable="columnTransactionTypeID" msprop:Generator_ColumnPropNameInRow="TransactionTypeID" msprop:Generator_ColumnPropNameInTable="TransactionTypeIDColumn" msprop:Generator_UserColumnName="TransactionTypeID" type="xs:int" />
+              <xs:element name="TransactionType" msprop:Generator_ColumnVarNameInTable="columnTransactionType" msprop:Generator_ColumnPropNameInRow="TransactionType" msprop:Generator_ColumnPropNameInTable="TransactionTypeColumn" msprop:Generator_UserColumnName="TransactionType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ActionType" msprop:Generator_ColumnVarNameInTable="columnActionType" msprop:Generator_ColumnPropNameInRow="ActionType" msprop:Generator_ColumnPropNameInTable="ActionTypeColumn" msprop:Generator_UserColumnName="ActionType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasClientOrderInformation" msprop:Generator_ColumnVarNameInTable="columnHasClientOrderInformation" msprop:Generator_ColumnPropNameInRow="HasClientOrderInformation" msprop:Generator_ColumnPropNameInTable="HasClientOrderInformationColumn" msprop:Generator_UserColumnName="HasClientOrderInformation" type="xs:boolean" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OrderNo" msprop:Generator_ColumnVarNameInTable="columnOrderNo" msprop:Generator_ColumnPropNameInRow="OrderNo" msprop:Generator_ColumnPropNameInTable="OrderNoColumn" msprop:Generator_UserColumnName="OrderNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ClientID" msprop:Generator_ColumnVarNameInTable="columnClientID" msprop:Generator_ColumnPropNameInRow="ClientID" msprop:Generator_ColumnPropNameInTable="ClientIDColumn" msprop:Generator_UserColumnName="ClientID" type="xs:int" minOccurs="0" />
+              <xs:element name="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_UserColumnName="ClientName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OrderTotal" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOrderTotal" msprop:Generator_ColumnPropNameInRow="OrderTotal" msprop:Generator_ColumnPropNameInTable="OrderTotalColumn" msprop:Generator_UserColumnName="OrderTotal" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ClientTransactionDetails" msprop:Generator_TableClassName="ClientTransactionDetailsDataTable" msprop:Generator_TableVarName="tableClientTransactionDetails" msprop:Generator_TablePropName="ClientTransactionDetails" msprop:Generator_RowDeletingName="ClientTransactionDetailsRowDeleting" msprop:Generator_UserTableName="ClientTransactionDetails" msprop:Generator_RowChangingName="ClientTransactionDetailsRowChanging" msprop:Generator_RowEvHandlerName="ClientTransactionDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientTransactionDetailsRowDeleted" msprop:Generator_RowEvArgName="ClientTransactionDetailsRowChangeEvent" msprop:Generator_RowChangedName="ClientTransactionDetailsRowChanged" msprop:Generator_RowClassName="ClientTransactionDetailsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionDetailID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionDetailID" msprop:Generator_ColumnPropNameInRow="TransactionDetailID" msprop:Generator_ColumnPropNameInTable="TransactionDetailIDColumn" msprop:Generator_UserColumnName="TransactionDetailID" type="xs:int" />
+              <xs:element name="TransactionID" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TransactionDetails" msprop:Generator_ColumnVarNameInTable="columnTransactionDetails" msprop:Generator_ColumnPropNameInRow="TransactionDetails" msprop:Generator_ColumnPropNameInTable="TransactionDetailsColumn" msprop:Generator_UserColumnName="TransactionDetails">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="TransactionTypeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionTypeID" msprop:Generator_ColumnPropNameInRow="TransactionTypeID" msprop:Generator_ColumnPropNameInTable="TransactionTypeIDColumn" msprop:Generator_UserColumnName="TransactionTypeID" type="xs:int" />
+              <xs:element name="TransactionType" msprop:Generator_ColumnVarNameInTable="columnTransactionType" msprop:Generator_ColumnPropNameInRow="TransactionType" msprop:Generator_ColumnPropNameInTable="TransactionTypeColumn" msprop:Generator_UserColumnName="TransactionType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ActionType" msprop:Generator_ColumnVarNameInTable="columnActionType" msprop:Generator_ColumnPropNameInRow="ActionType" msprop:Generator_ColumnPropNameInTable="ActionTypeColumn" msprop:Generator_UserColumnName="ActionType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasClientOrderInformation" msprop:Generator_ColumnVarNameInTable="columnHasClientOrderInformation" msprop:Generator_ColumnPropNameInRow="HasClientOrderInformation" msprop:Generator_ColumnPropNameInTable="HasClientOrderInformationColumn" msprop:Generator_UserColumnName="HasClientOrderInformation" type="xs:boolean" />
+              <xs:element name="OrderNo" msprop:Generator_ColumnVarNameInTable="columnOrderNo" msprop:Generator_ColumnPropNameInRow="OrderNo" msprop:Generator_ColumnPropNameInTable="OrderNoColumn" msprop:Generator_UserColumnName="OrderNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ClientID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnClientID" msprop:Generator_ColumnPropNameInRow="ClientID" msprop:Generator_ColumnPropNameInTable="ClientIDColumn" msprop:Generator_UserColumnName="ClientID" type="xs:int" />
+              <xs:element name="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_UserColumnName="ClientName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Manufacturer" msprop:Generator_ColumnVarNameInTable="columnManufacturer" msprop:Generator_ColumnPropNameInRow="Manufacturer" msprop:Generator_ColumnPropNameInTable="ManufacturerColumn" msprop:Generator_UserColumnName="Manufacturer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WareHouseID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnWareHouseID" msprop:Generator_ColumnPropNameInRow="WareHouseID" msprop:Generator_ColumnPropNameInTable="WareHouseIDColumn" msprop:Generator_UserColumnName="WareHouseID" type="xs:int" />
+              <xs:element name="WareHouseName" msprop:Generator_ColumnVarNameInTable="columnWareHouseName" msprop:Generator_ColumnPropNameInRow="WareHouseName" msprop:Generator_ColumnPropNameInTable="WareHouseNameColumn" msprop:Generator_UserColumnName="WareHouseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TransactQuantity" msprop:Generator_ColumnVarNameInTable="columnTransactQuantity" msprop:Generator_ColumnPropNameInRow="TransactQuantity" msprop:Generator_ColumnPropNameInTable="TransactQuantityColumn" msprop:Generator_UserColumnName="TransactQuantity" type="xs:decimal" />
+              <xs:element name="TransactCost" msprop:Generator_ColumnVarNameInTable="columnTransactCost" msprop:Generator_ColumnPropNameInRow="TransactCost" msprop:Generator_ColumnPropNameInTable="TransactCostColumn" msprop:Generator_UserColumnName="TransactCost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalCost" msprop:Generator_ColumnVarNameInTable="columnTotalCost" msprop:Generator_ColumnPropNameInRow="TotalCost" msprop:Generator_ColumnPropNameInTable="TotalCostColumn" msprop:Generator_UserColumnName="TotalCost" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StockChangeInformation" msprop:Generator_TableClassName="StockChangeInformationDataTable" msprop:Generator_TableVarName="tableStockChangeInformation" msprop:Generator_TablePropName="StockChangeInformation" msprop:Generator_RowDeletingName="StockChangeInformationRowDeleting" msprop:Generator_UserTableName="StockChangeInformation" msprop:Generator_RowChangingName="StockChangeInformationRowChanging" msprop:Generator_RowEvHandlerName="StockChangeInformationRowChangeEventHandler" msprop:Generator_RowDeletedName="StockChangeInformationRowDeleted" msprop:Generator_RowEvArgName="StockChangeInformationRowChangeEvent" msprop:Generator_RowChangedName="StockChangeInformationRowChanged" msprop:Generator_RowClassName="StockChangeInformationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionStockInformationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionStockInformationID" msprop:Generator_ColumnPropNameInRow="TransactionStockInformationID" msprop:Generator_ColumnPropNameInTable="TransactionStockInformationIDColumn" msprop:Generator_UserColumnName="TransactionStockInformationID" type="xs:int" />
+              <xs:element name="TransactionDetailID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionDetailID" msprop:Generator_ColumnPropNameInRow="TransactionDetailID" msprop:Generator_ColumnPropNameInTable="TransactionDetailIDColumn" msprop:Generator_UserColumnName="TransactionDetailID" type="xs:int" />
+              <xs:element name="TransactionID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="ProductID" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Manufacturer" msprop:Generator_ColumnVarNameInTable="columnManufacturer" msprop:Generator_ColumnPropNameInRow="Manufacturer" msprop:Generator_ColumnPropNameInTable="ManufacturerColumn" msprop:Generator_UserColumnName="Manufacturer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FromWareHouseID" msprop:Generator_ColumnVarNameInTable="columnFromWareHouseID" msprop:Generator_ColumnPropNameInRow="FromWareHouseID" msprop:Generator_ColumnPropNameInTable="FromWareHouseIDColumn" msprop:Generator_UserColumnName="FromWareHouseID" type="xs:int" />
+              <xs:element name="FromWareHouseName" msprop:Generator_ColumnVarNameInTable="columnFromWareHouseName" msprop:Generator_ColumnPropNameInRow="FromWareHouseName" msprop:Generator_ColumnPropNameInTable="FromWareHouseNameColumn" msprop:Generator_UserColumnName="FromWareHouseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ToWareHouseID" msprop:Generator_ColumnVarNameInTable="columnToWareHouseID" msprop:Generator_ColumnPropNameInRow="ToWareHouseID" msprop:Generator_ColumnPropNameInTable="ToWareHouseIDColumn" msprop:Generator_UserColumnName="ToWareHouseID" type="xs:int" minOccurs="0" />
+              <xs:element name="ToWareHouseName" msprop:Generator_ColumnVarNameInTable="columnToWareHouseName" msprop:Generator_ColumnPropNameInRow="ToWareHouseName" msprop:Generator_ColumnPropNameInTable="ToWareHouseNameColumn" msprop:Generator_UserColumnName="ToWareHouseName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cost" msprop:Generator_ColumnVarNameInTable="columnCost" msprop:Generator_ColumnPropNameInRow="Cost" msprop:Generator_ColumnPropNameInTable="CostColumn" msprop:Generator_UserColumnName="Cost" type="xs:decimal" />
+              <xs:element name="OldQuantity" msprop:Generator_ColumnVarNameInTable="columnOldQuantity" msprop:Generator_ColumnPropNameInRow="OldQuantity" msprop:Generator_ColumnPropNameInTable="OldQuantityColumn" msprop:Generator_UserColumnName="OldQuantity" type="xs:decimal" />
+              <xs:element name="NewQuantity" msprop:Generator_ColumnVarNameInTable="columnNewQuantity" msprop:Generator_ColumnPropNameInRow="NewQuantity" msprop:Generator_ColumnPropNameInTable="NewQuantityColumn" msprop:Generator_UserColumnName="NewQuantity" type="xs:decimal" />
+              <xs:element name="IsFromWareHouse" msprop:Generator_ColumnVarNameInTable="columnIsFromWareHouse" msprop:Generator_ColumnPropNameInRow="IsFromWareHouse" msprop:Generator_ColumnPropNameInTable="IsFromWareHouseColumn" msprop:Generator_UserColumnName="IsFromWareHouse" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CurrentInventory" />
+      <xs:field xpath="mstns:InventoryID" />
+    </xs:unique>
+    <xs:unique name="TransactionSummary_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TransactionSummary" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
