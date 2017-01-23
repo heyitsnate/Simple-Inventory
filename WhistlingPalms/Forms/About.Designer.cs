@@ -28,19 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelProductName = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.labelCopyright = new System.Windows.Forms.Label();
+            this.labelCompanyName = new System.Windows.Forms.Label();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(423, 83);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelProductName
+            // 
+            this.labelProductName.AutoSize = true;
+            this.labelProductName.Location = new System.Drawing.Point(12, 134);
+            this.labelProductName.Name = "labelProductName";
+            this.labelProductName.Size = new System.Drawing.Size(75, 13);
+            this.labelProductName.TabIndex = 1;
+            this.labelProductName.Text = "Product Name";
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(12, 160);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(42, 13);
+            this.labelVersion.TabIndex = 2;
+            this.labelVersion.Text = "Version";
+            // 
+            // labelCopyright
+            // 
+            this.labelCopyright.AutoSize = true;
+            this.labelCopyright.Location = new System.Drawing.Point(12, 187);
+            this.labelCopyright.Name = "labelCopyright";
+            this.labelCopyright.Size = new System.Drawing.Size(51, 13);
+            this.labelCopyright.TabIndex = 3;
+            this.labelCopyright.Text = "Copyright";
+            // 
+            // labelCompanyName
+            // 
+            this.labelCompanyName.AutoSize = true;
+            this.labelCompanyName.Location = new System.Drawing.Point(12, 215);
+            this.labelCompanyName.Name = "labelCompanyName";
+            this.labelCompanyName.Size = new System.Drawing.Size(79, 13);
+            this.labelCompanyName.TabIndex = 4;
+            this.labelCompanyName.Text = "CompanyName";
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.textBoxDescription.Location = new System.Drawing.Point(12, 250);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.ReadOnly = true;
+            this.textBoxDescription.Size = new System.Drawing.Size(423, 143);
+            this.textBoxDescription.TabIndex = 5;
+            this.textBoxDescription.Text = "Description";
             // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 296);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(447, 405);
+            this.Controls.Add(this.textBoxDescription);
+            this.Controls.Add(this.labelCompanyName);
+            this.Controls.Add(this.labelCopyright);
+            this.Controls.Add(this.labelVersion);
+            this.Controls.Add(this.labelProductName);
+            this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "About";
             this.Text = "About";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelProductName;
+        private System.Windows.Forms.Label labelVersion;
+        private System.Windows.Forms.Label labelCopyright;
+        private System.Windows.Forms.Label labelCompanyName;
+        private System.Windows.Forms.TextBox textBoxDescription;
     }
 }
