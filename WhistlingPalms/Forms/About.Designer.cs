@@ -35,6 +35,7 @@
             this.labelCopyright = new System.Windows.Forms.Label();
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,12 +96,23 @@
             this.textBoxDescription.TabIndex = 5;
             this.textBoxDescription.Text = "Description";
             // 
+            // btn_Close
+            // 
+            this.btn_Close.Location = new System.Drawing.Point(360, 415);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(75, 23);
+            this.btn_Close.TabIndex = 6;
+            this.btn_Close.Text = "Close";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(447, 405);
+            this.ClientSize = new System.Drawing.Size(447, 450);
+            this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.labelCompanyName);
             this.Controls.Add(this.labelCopyright);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Label labelCopyright;
         private System.Windows.Forms.Label labelCompanyName;
         private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Button btn_Close;
     }
 }
