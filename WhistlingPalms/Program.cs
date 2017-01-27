@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
+using WhistlingPalms.Forms;
 
 namespace WhistlingPalms
 {
@@ -72,6 +74,7 @@ namespace WhistlingPalms
                     cn.Dispose();
                 }
             }
+            Thread.Sleep(5000);
 
             // Run the main application only if DB is connected.
             // Avoiding base.OnRun() => causes OnCreateMainForm() and HideSplashScreen() not to be called.
@@ -81,8 +84,8 @@ namespace WhistlingPalms
         }
 
         protected override void OnCreateSplashScreen()
-        {
-            //this.SplashScreen = new frmSplashScreen();
+        {           
+            this.SplashScreen = new frmSplashScreen();
         }
 
         protected override void OnCreateMainForm()

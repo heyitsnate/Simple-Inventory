@@ -415,7 +415,7 @@ namespace WhistlingPalms
                     dgvTransactionDetails.Refresh();
                 }
             }
-        }
+        }                       
         #endregion
     }
 }
