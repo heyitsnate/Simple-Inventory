@@ -206,7 +206,7 @@ namespace WhistlingPalms
             }
             else
             {
-                MessageBox.Show("Following error occured in validating server." + Environment.NewLine +
+                MessageBox.Show("Following error occurred in validating server." + Environment.NewLine +
                                 errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -228,7 +228,7 @@ namespace WhistlingPalms
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Creating the database failed.");
-                    e.Result = "Following error occured while creating the database:" + Environment.NewLine +
+                    e.Result = "Following error occurred while creating the database:" + Environment.NewLine +
                                errorMessage;
                     return;
                 }
@@ -245,7 +245,7 @@ namespace WhistlingPalms
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Verifying the attached database failed.");
-                    e.Result = "Following error occured while verifying the attached database:" + Environment.NewLine +
+                    e.Result = "Following error occurred while verifying the attached database:" + Environment.NewLine +
                                errorMessage;
                     return;
                 }
@@ -255,17 +255,17 @@ namespace WhistlingPalms
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Installing schema to the database failed.");
-                    e.Result = "Following error occured while installing schema to the database:" + Environment.NewLine +
+                    e.Result = "Following error occurred while installing schema to the database:" + Environment.NewLine +
                                errorMessage;
                     return;
                 }
 
-                bgwSetupConnection.ReportProgress(70, "(4/6) Verifying the integrifty of database schema...");
+                bgwSetupConnection.ReportProgress(70, "(4/6) Verifying the integrity of database schema...");
                 errorMessage = objdb.VerifySchema(Application.StartupPath + "\\Scripts\\InstallDatabaseSchema.sql");
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Verifying integrity of the database schema failed.");
-                    e.Result = "Following error occured while verifying integrity of the database schema:" +
+                    e.Result = "Following error occurred while verifying integrity of the database schema:" +
                                Environment.NewLine + errorMessage;
                     return;
                 }
@@ -284,7 +284,7 @@ namespace WhistlingPalms
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Attaching the database failed.");
-                    e.Result = "Following error occured while attaching the database:" + Environment.NewLine +
+                    e.Result = "Following error occurred while attaching the database:" + Environment.NewLine +
                                errorMessage;
                     return;
                 }
@@ -301,17 +301,17 @@ namespace WhistlingPalms
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Verifying the attached database failed.");
-                    e.Result = "Following error occured while verifying the attached database:" + Environment.NewLine +
+                    e.Result = "Following error occurred while verifying the attached database:" + Environment.NewLine +
                                errorMessage;
                     return;
                 }
 
-                bgwSetupConnection.ReportProgress(50, "(3/5) Verifying the integrifty of database schema...");
+                bgwSetupConnection.ReportProgress(50, "(3/5) Verifying the integrity of database schema...");
                 errorMessage = objdb.VerifySchema(Application.StartupPath + "\\Scripts\\InstallDatabaseSchema.sql");
                 if (errorMessage != ErrorStates.Success.ToString())
                 {
                     bgwSetupConnection.ReportProgress(100, "Verifying integrity of the database schema failed.");
-                    e.Result = "Following error occured while verifying integrity of the database schema:" +
+                    e.Result = "Following error occurred while verifying integrity of the database schema:" +
                                Environment.NewLine + errorMessage;
                     return;
                 }

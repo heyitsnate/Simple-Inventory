@@ -89,7 +89,7 @@ namespace WhistlingPalms
                         }
                         else
                         {
-                            MessageBox.Show("Transaction Type Updation failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Transaction Type Update failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
                     }
