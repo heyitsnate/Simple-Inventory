@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSplashScreen));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picboxPB = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lbl3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxPB)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -67,12 +72,36 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // picboxPB
+            // 
+            this.picboxPB.Location = new System.Drawing.Point(12, 12);
+            this.picboxPB.Name = "picboxPB";
+            this.picboxPB.Size = new System.Drawing.Size(419, 22);
+            this.picboxPB.TabIndex = 3;
+            this.picboxPB.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lbl3
+            // 
+            this.lbl3.AutoSize = true;
+            this.lbl3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lbl3.Location = new System.Drawing.Point(12, 37);
+            this.lbl3.Name = "lbl3";
+            this.lbl3.Size = new System.Drawing.Size(0, 13);
+            this.lbl3.TabIndex = 4;
+            // 
             // frmSplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(443, 615);
+            this.Controls.Add(this.lbl3);
+            this.Controls.Add(this.picboxPB);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -82,7 +111,9 @@
             this.Name = "frmSplashScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSplashScreen";
+            this.Load += new System.EventHandler(this.frmSplashScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxPB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +124,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picboxPB;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lbl3;
     }
 }

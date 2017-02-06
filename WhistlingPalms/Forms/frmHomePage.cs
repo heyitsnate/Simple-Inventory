@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using WhistlingPalms.Forms;
+using WhistlingPalms.Forms.Reports;
 
 namespace WhistlingPalms
 {

@@ -1,4 +1,4 @@
-﻿namespace WhistlingPalms
+﻿namespace WhistlingPalms.Forms.Reports
 {
     partial class ClientTransactionDetails
     {

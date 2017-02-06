@@ -74,8 +74,7 @@ namespace WhistlingPalms
                     cn.Dispose();
                 }
             }
-            Thread.Sleep(5000);
-
+            Thread.Sleep(6000);
             // Run the main application only if DB is connected.
             // Avoiding base.OnRun() => causes OnCreateMainForm() and HideSplashScreen() not to be called.
             // And hence terminates the application.
